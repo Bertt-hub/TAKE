@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>PrimeFaces</title>
+    </h:head>
+    <h:body>
+        <p:tabView>
+            <p:tab title="Form">
+                <h:form>
+                    <p:spinner id="spin_1" min="0" max="100" value="#{primeFaces.number1}"/> +
+                    <p:spinner id="spin_2" min="0" max="100" value="#{primeFaces.number2}"/>
+                    <p:commandButton id="Calculate" value="Calculate" update="result date growl_panel"/> =
+                    <h:outputText id="result" value="#{primeFaces.Calculate()}" />
+                    <br/><br/>
+                    <h:outputText id="date" value="#{primeFaces.getDate()}"/>
+                    <br/><br/>
+                    <p:growl id="growl"/>
+                    <p:panel id="growl_panel" header="Komponent Growl">
+                        <p:outputLabel value="#{primeFaces.number1} + "/>
+                        <p:outputLabel value="#{primeFaces.number2} = "/>
+                        <p:outputLabel value="#{primeFaces.result}"/>
+                    </p:panel>
+                </h:form>
+                
+            </p:tab>
+            <p:tab title="Table">
+                <p:dataTable value="#{primeFaces.students}" var="students" paginator="true" rowsPerPageTemplate="5,10">
+                    <p:column headerText="Imię">
+                        <h:outputText value="#{students.name}"/>
+                    </p:column>
+                    <p:column headerText="Nazwisko" sortBy="#{students.lastName}">
+                        <h:outputText value="#{students.lastName}"/>
+                    </p:column>
+                    <p:column headerText="Średnia" sortBy="#{students.average}">
+                        <h:outputText value="#{students.average}"/>
+                    </p:column>
+                </p:dataTable>
+            </p:tab>
+            <p:tab title="Chart">
+                <h:form>
+                    <p:chart type="line" model="#{primeFaces.lineModel}" widgetVar="chart" />
+                    <p:commandButton type="button" value="Reset" onclick="PF('chart').resetZoom()"/>
+                </h:form>
+                
+            </p:tab>
+            
+        </p:tabView>
+    </h:body>
+</html>
+
