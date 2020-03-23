@@ -59,13 +59,18 @@ public class LoginBean {
         this.password = password;
     }
     
+    /**
+     * https://stackoverflow.com/questions/13655540/read-resource-bundle-properties-in-a-managed-bean/13656194#13656194 - ResourceBundle
+     * https://stackoverflow.com/questions/2313454/jsf-message-severity - FacesMessage
+     * @return
+     */
     public String login(){
         if (username.equals(password)) {
             return "success";
         } else {
             if (username.equals("scott") && password.equals("tiger")){
                 FacesContext context = FacesContext.getCurrentInstance();
-               ResourceBundle resourceBundle = ResourceBundle.getBundle("ApplicationMessages", context.getViewRoot().getLocale());
+                ResourceBundle resourceBundle = ResourceBundle.getBundle("ApplicationMessages", context.getViewRoot().getLocale());
                 FacesMessage errorMessage = new FacesMessage(resourceBundle.getString("validation.oracle"));
                 errorMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
                 context.addMessage(null, errorMessage);
