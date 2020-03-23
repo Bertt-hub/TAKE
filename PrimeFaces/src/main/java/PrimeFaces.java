@@ -47,6 +47,12 @@ public class PrimeFaces {
        list.add(new Student("Karolina","Kopycińska",3.98));
        list.add(new Student("Magda","Abramowicz",4.55));
        list.add(new Student("Sylwia","Cicha",5.00));
+       list.add(new Student("Adam","Abramowicz",4.55));
+       list.add(new Student("Agata","Cicha",5.00));
+       list.add(new Student("Adam","Jurecki",2.40));
+       list.add(new Student("Maciej","Brzozowski",4.91));
+       list.add(new Student("Karolina","Kopycińska",3.98));
+       
        this.students = list;
        
        GenerateLineChart();

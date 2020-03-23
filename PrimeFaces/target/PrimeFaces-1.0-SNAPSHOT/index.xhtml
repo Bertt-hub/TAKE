@@ -28,7 +28,7 @@
                 
             </p:tab>
             <p:tab title="Table">
-                <p:dataTable value="#{primeFaces.students}" var="students" paginator="true" rowsPerPageTemplate="5,10">
+                <p:dataTable value="#{primeFaces.students}" var="students" paginator="true" rowsPerPageTemplate="5,10,15" rows="5">
                     <p:column headerText="Imię">
                         <h:outputText value="#{students.name}"/>
                     </p:column>
