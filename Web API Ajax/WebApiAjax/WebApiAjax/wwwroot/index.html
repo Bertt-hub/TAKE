@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Web API Ajax</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#calc").click(function () {
+                var x = $('#x').val();
+                var y = $('#y').val();
+
+                var $sum = $('#sum');
+                var $diff = $('#difference');
+                var $pro = $('#product');
+                var $quo = $('#quotient');
+
+                var $data = {
+                    x: x,
+                    y: y
+                }
+                $.ajax({
+                    type: 'GET',
+                    url: '/api/math',
+                    data: $data,
+                    success: function (CalcResult) {
+                        $sum.append(CalcResult.sum);
+                        $diff.text(CalcResult.difference);
+                        $pro.text(CalcResult.product);
+                        $quo.text(CalcResult.quotient);
+                    },
+                    error: function () {
+                        alert('Brak odpowiedzi');
+                    }
+
+                });
+          });
+        });
+
+        function callAPIVanillaJS(){
+            var x = document.getElementById("x").value;
+            var y = document.getElementById("y").value;
+
+            xhr = new XMLHttpRequest();
+            xhr.responseType = "json";
+
+            var url = "/api/math"
+            var params = "x=" + x + "&y=" + y;
+
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var CalcResult = this.response;
+                    document.getElementById("sum").innerText = CalcResult.sum;
+                    document.getElementById("difference").innerText = CalcResult.difference;
+                    document.getElementById("product").innerText = CalcResult.product;
+                    document.getElementById("quotient").innerText = CalcResult.quotient;
+                }
+            };
+        xhr.open("GET", url + "?" + params, true);
+        xhr.send(null);
+        };
+
+    </script>
+    <div>
+        <h1>Calculations</h1>
+        <form>
+            x = <input type="text" id="x" />
+            y = <input type="text" id="y" />
+            <input type="button" id="calc" value="Call API (jQuery)" />
+            <input type="button" value="Call API (vanilla JS)" onclick="callAPIVanillaJS()" />
+        </form>
+        x + y = <span id="sum"></span><br />
+        x - y = <span id="difference"></span><br />
+        x * y = <span id="product"></span><br />
+        x / y = <span id="quotient"></span><br />
+    </div>
+</body>
+</html>
