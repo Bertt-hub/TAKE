@@ -1,0 +1,48 @@
+﻿@model PizzeriaApp.Models.PizzaModel
+
+@{
+    ViewData["Title"] = "ConfirmDelete";
+}
+
+<h3>Czy na pewno chcesz usunąć tę pizzę?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PizzaName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PizzaName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PriceSmall)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PriceSmall)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PriceMedium)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PriceMedium)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PriceBig)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PriceBig)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Dough)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Dough)
+        </dd>
+    </dl>
+
+    <form asp-action="ConfirmDelete">
+        <input type="hidden" asp-for="PizzaId" />
+        <input type="submit" value="Tak" class="btn btn-danger" /> |
+        <a asp-action="Index">Nie</a>
+    </form>
+</div>

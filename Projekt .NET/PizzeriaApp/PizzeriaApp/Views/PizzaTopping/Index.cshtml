@@ -1,0 +1,47 @@
+﻿@model PizzeriaApp.Models.AllDataModel;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>Lista pizz z dodatkami</h1>
+
+<p>
+    <a asp-action="Create">Dodaj dodatki do pizzy</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Pizza
+            </th>
+            <th>
+                Dodatki
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.allPizzas)
+        {
+            <tr>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.PizzaName)
+                    <a asp-action="Edit" asp-route-id="@item.PizzaId">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"> </span>
+                    </a>
+                </td>
+                <td>
+                    @foreach (var it in Model.allPizzasToppings.Where(x => x.PizzaId == item.PizzaId))
+                    {
+
+                        @Html.DisplayFor(modelItem => it.Topping.ToppingName); <text> &nbsp;</text>
+                        @Html.ActionLink("", "Delete", new { id = it.PizzaId, id2 = it.ToppingId }, new { @class = "glyphicon glyphicon-remove-sign" } ) <text> &nbsp;</text>
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

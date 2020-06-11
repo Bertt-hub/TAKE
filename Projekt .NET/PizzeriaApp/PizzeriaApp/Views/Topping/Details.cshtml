@@ -1,0 +1,23 @@
+﻿@model PizzeriaApp.Models.ToppingModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Szczegóły dodatku</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Nazwa dodatku:
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ToppingName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ToppingId">Edytuj</a> |
+    <a asp-action="Index">Powrót do listy dodatków</a>
+</div>

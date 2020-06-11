@@ -1,0 +1,37 @@
+﻿@model PizzeriaApp.Models.PizzaToppingModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Dodaj dodatki</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <h4><label class="control-label">@ViewBag.Pizza.PizzaName </label></h4>
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" value="@ViewBag.Pizza.PizzaId" name="PizzaId"/>
+                <input type="hidden" asp-for="PizzaId" asp-item="@ViewBag.Pizza.PizzaId"/>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Dodatki: </label>
+                <ul style="list-style-type: none;">
+                    @foreach (var topping in ViewBag.Toppings)
+                    {
+                        <li> <input type="checkbox" name="ToppingsIds" value="@topping.ToppingId" /> @topping.ToppingName</li>
+                    }
+                </ul>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dodaj" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Powrót do listy</a>
+</div>
+
